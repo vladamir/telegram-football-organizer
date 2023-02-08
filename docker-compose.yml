@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+    app:
+        image: valarmorghuliis/telegram-football-organizer:latest
+        container_name: tfo-api
+        environment:
+            COMPOSER_MEMORY_LIMIT: "-1"
+        volumes:
+            - ./build/app/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+            - ./build/app/php.dev.ini:/usr/local/etc/php/conf.d/php.dev.ini
+            - ./build/app/supervisord.conf:/etc/supervisord.conf
+            - ./:/var/www/:cached
+        ports:
+            - "8081:80"
+        networks:
+            - tfo
+
+    postgres:
+        image: postgres:15
+        container_name: tfo-postgres
+        environment:
+            POSTGRES_DB: "tfo"
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+            PGDATA: "/var/lib/postgresql/data/pgdata"
+        volumes:
+            - "./storage/postgres:/var/lib/postgresql/data"
+        ports:
+            - "5432:5432"
+        command: -c fsync=off -c synchronous_commit=off -c full_page_writes=off
+        networks:
+            - tfo
+
+    nginx:
+        image: nginx
+        container_name: tfo-nginx
+        volumes:
+            - ./build/nginx/conf.d:/etc/nginx/conf.d
+            - ./storage/logs/nginx:/var/log/nginx
+        ports:
+            - "80:80"
+        networks:
+            - tfo
+
+    redis:
+        image: redis:alpine
+        container_name: tfo-redis
+        command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
+        volumes:
+            - "./storage/redis:/data"
+        ports:
+            - "6379:6379"
+        networks:
+            - tfo
+networks:
+    tfo:
+
+volumes:
+    postgresdata:

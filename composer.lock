@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe33f98a750b8c5a51b30c78bd3fab21",
+    "content-hash": "39de8a86eabb34b3078040eb335ee49e",
     "packages": [
         {
             "name": "brick/math",
@@ -61,6 +61,98 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "defstudio/telegraph",
+            "version": "v1.30.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/defstudio/telegraph.git",
+                "reference": "402e954f4b9cd62a201ffff58122efdc83d902d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/defstudio/telegraph/zipball/402e954f4b9cd62a201ffff58122efdc83d902d8",
+                "reference": "402e954f4b9cd62a201ffff58122efdc83d902d8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.37 | ^9.0 | ^10.0",
+                "illuminate/http": "^8.37 | ^9.0 | ^10.00",
+                "illuminate/support": "^8.37 | ^9.0 | ^10.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.12.1"
+            },
+            "require-dev": {
+                "defstudio/pest-plugin-laravel-expectations": "^v1.10.3",
+                "ext-sqlite3": "*",
+                "friendsofphp/php-cs-fixer": "^v3.13.0",
+                "guzzlehttp/guzzle": "^7.5.0",
+                "nunomaduro/collision": "^v5.11.0 | ^v6.3.1",
+                "nunomaduro/larastan": "^1.0.4 | ^2.4.0",
+                "orchestra/testbench": "^v6.25.1 | ^v7.13.0 | ^8.0",
+                "pestphp/pest": "^v1.22.2",
+                "pestphp/pest-plugin-laravel": "^v1.3.0",
+                "pestphp/pest-plugin-mock": "^v1.0.3",
+                "phpstan/extension-installer": "^1.2.0",
+                "phpstan/phpstan-deprecation-rules": "^1.0.0",
+                "phpstan/phpstan-phpunit": "^1.2.2",
+                "phpunit/phpunit": "^9.5.26",
+                "spatie/laravel-ray": "^1.31.0",
+                "spatie/pest-plugin-snapshots": "^1.1.0",
+                "spatie/pest-plugin-test-time": "^1.1.1",
+                "spatie/x-ray": "dev-main"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DefStudio\\Telegraph\\TelegraphServiceProvider"
+                    ],
+                    "aliases": {
+                        "Telegraph": "DefStudio\\Telegraph\\Facades\\Telegraph"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DefStudio\\Telegraph\\": "src",
+                    "DefStudio\\Telegraph\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabio Ivona",
+                    "email": "fabio.ivona@defstudio.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A laravel facade to interact with Telegram Bots",
+            "homepage": "https://github.com/defstudio/telegraph",
+            "keywords": [
+                "defstudio",
+                "laravel",
+                "telegraph"
+            ],
+            "support": {
+                "issues": "https://github.com/defstudio/telegraph/issues",
+                "source": "https://github.com/defstudio/telegraph/tree/v1.30.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/defstudio",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/fabio-ivona",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-06T14:19:33+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -2941,6 +3033,66 @@
                 }
             ],
             "time": "2023-01-12T18:13:24+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-27T15:33:45+00:00"
         },
         {
             "name": "symfony/console",

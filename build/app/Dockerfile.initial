@@ -1,0 +1,46 @@
+FROM php:8.2.2-fpm-alpine3.17
+
+MAINTAINER vladamir
+
+# pre-install
+RUN apk add --update --no-cache $PHPIZE_DEPS \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    freetype-dev \
+    libwebp-dev \
+    mysql-client \
+    nginx \
+    supervisor \
+    libzip-dev \
+    icu-dev \
+    libxml2-dev \
+    postgresql-dev \
+    postgresql-client \
+    linux-headers
+
+# extensions
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-webp=/usr/include/
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql
+RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql gd zip intl xml soap pcntl
+
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
+
+RUN pecl install mongodb
+RUN pecl install grpc
+
+# install composer and add its bin to the PATH.
+RUN curl -s http://getcomposer.org/installer | php && \
+    echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc && \
+    mv composer.phar /usr/local/bin/composer
+
+RUN apk update \
+    rm /var/cache/apk/* && \
+    mkdir -p /var/www && \
+    rm -r /usr/local/etc/php-fpm.d/*
+
+CMD ["php-fpm"]
