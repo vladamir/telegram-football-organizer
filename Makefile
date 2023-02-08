@@ -5,3 +5,6 @@ build-initial:
 build-app:
 	docker build --rm -t valarmorghuliis/telegram-football-organizer:latest -f ./build/app/Dockerfile .
 	docker push valarmorghuliis/telegram-football-organizer:latest
+
+migrate:
+	./scripts/artisan.sh migrate --seed

@@ -1,4 +1,4 @@
-FROM hub.docker.com/valarmorghuliis/php:8.2.2-fpm-alpine3.17
+FROM valarmorghuliis/php:8.2.2-fpm-alpine3.17
 
 MAINTAINER Affise
 
@@ -31,7 +31,7 @@ RUN apk update \
 
 WORKDIR /var/www
 
-COPY ./build/app/entrypoint.prod.sh /entrypoint.sh
+COPY ./build/app/entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
 EXPOSE 80 443

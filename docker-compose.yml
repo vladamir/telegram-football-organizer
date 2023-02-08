@@ -55,6 +55,3 @@ services:
             - tfo
 networks:
     tfo:
-
-volumes:
-    postgresdata:
