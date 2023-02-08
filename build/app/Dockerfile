@@ -1,6 +1,6 @@
 FROM valarmorghuliis/php:8.2.2-fpm-alpine3.17
 
-MAINTAINER Affise
+MAINTAINER vladamir
 
 ARG API_VERSION
 ENV API_VERSION=$API_VERSION
